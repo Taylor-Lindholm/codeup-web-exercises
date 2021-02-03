@@ -22,21 +22,13 @@ var ggle = prompt('How many hours have you worked for google this week?');
 
 
 var fulllClass = confirm('Is the class full?');
-    {
-    if (fulllClass = false) then;
-    var schedule = confirm('Does this class time conflict with prior scheduling?');
-    if (schedule = false) then;
-    alert("You may register for this class")
+var schedCong = confirm('Do you have a schedule conflict?')
+alert('You can join the class is a ' +(!fulllClass && schedCong) + ' statement.')
 
-}
+
 
 var spcoffer = confirm('Are you buying more then two items?');
     var member = confirm('Are you a premium member?');
-{
-    if(spcoffer = true);
-    alert('You are eligible!');
-    If(member = true);
-    alert('You are eligibleQ');
-    if(spcoffer = false, member = false);
-    alert('You are not eligible.');
-}
+    var expOffer = ('Is offer still valid?')
+    var offerVal = (spcoffer || member) && expOffer;
+    alert('You are elegible for this discount is a ' + offerVal + ' statement.')
