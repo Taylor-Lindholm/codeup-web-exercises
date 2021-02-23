@@ -18,15 +18,16 @@ console.log(names.length);
      * Create log statements that will print each of the names individually by
      * accessing each element's index.
      */
-    for(var i = 0; i < names.length; i++){
-        console.log(names[i]);
-    }
+    console.log("names [0] :" + names[0]);
+    console.log("names [1] :" + names[1]);
+    console.log("names [2] :" + names[2]);
+    console.log("names [3] :" + names[3]);
     /**
      * TODO:
      * Write some code that uses a for loop to log every item in the names
      * array.
      */
-    for(var i = 0; i < names.length; i++){
+    for(var i = 0; i <= 3; i++){
         console.log(names[i]);
     }
     /**
@@ -52,10 +53,10 @@ console.log(names.length);
      */
 
     function firstArray(array){
-        return array.length[0];
+        return array[0];
     }
     function secondArray(array){
-        return array.length[1];
+        return array[1];
     }
     function lastArrat(array){
         return array.length - 1;
