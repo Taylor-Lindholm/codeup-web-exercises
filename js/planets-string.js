@@ -12,7 +12,10 @@
      */
 
     console.log(planetsArray);
+var brPlanets =  planetsArray.join('<br>');
 
+var ulPlanets = "<ul><li>" + planetsArray.join("</li><li>") + "</li></ul>";
+console.log(ulPlanets);
     /**
      * TODO:
      * Create a string with <br> tags between each planet. console.log() your
@@ -24,7 +27,7 @@
      * string, and <li> tags around each planet.
      */
 
-    var names = "alex" <br> "taylor" <br> "braeden" <br> "austin";
+
 
 
 })();

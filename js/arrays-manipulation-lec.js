@@ -146,13 +146,13 @@ console.log(lastThree(pies));
 
 // sort an array in alphabetical order
 
-    // pies.sort();
+    pies.sort();
 
 // sort in chronological order
 
-    // var numbers = [1, 2, 11, 3, 4];
-    // numbers.sort();
-    // console.log(numbers); // wat?
+     var numbers = [1, 2, 11, 3, 4];
+     numbers.sort();
+     console.log(numbers); // wat?
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 
@@ -161,22 +161,22 @@ console.log(lastThree(pies));
 
 // splitting string into and array
 
-// var names = "Bob Sally Mary";
+var names = "Bob Sally Mary";
 //
-// var namesArr = names.split(" ");
+var namesArr = names.split(" ");
 //
-// var namesString = namesArr.join("");
+var namesString = namesArr.join("");
 //
-// console.log(namesString);
+console.log(namesString);
 
 // splitting on an empty string
 
-    // var everyCharacter = bondsString.split("");
+var everyCharacter = bondsString.split("");
 
 // joining array into a string
 
-    // var bondsArray = ["Connery", "Lazenby", "Moore", "Dalton", "Brosnan", "Craig"];
-    // var bondsString = bondsArray.join("_");
+     var bondsArray = ["Connery", "Lazenby", "Moore", "Dalton", "Brosnan", "Craig"];
+     var bondsString = bondsArray.join("_");
 
 
 // TODO DEMONSTRATION: Create a function that will take in a formatted string of numbers
@@ -191,17 +191,22 @@ console.log(lastThree(pies));
        5125553030
 */
 
-// var phoneNumbers = '210-555-2020\n230-555-2020\n512-555-3030';
+ var phoneNumbers = '210-555-2020\n230-555-2020\n512-555-3030';
+
+ function cleanPhoneNumbers(phoneNums) {
+    var output = [];
+    var phoneNumarray = phoneNums.split("\n");
+    phoneNumarray.forEach(function(phoneNum){
+        var phoneNumberAraay = phoneNum.split("-");
+    })
+    return output;
+ }
 //
-// function cleanPhoneNumbers(phoneNums) {
-//
-// }
-//
-// var cleanNumsArr = cleanPhoneNumbers(phoneNumbers);
-//
-// for (var i = 0; i < cleanNumsArr.length; i += 1) {
-//     console.log(cleanNumsArr[i]);
-// }
+ var cleanNumsArr = cleanPhoneNumbers(phoneNumbers);
+
+ for (var i = 0; i < cleanNumsArr.length; i += 1) {
+     console.log(cleanNumsArr[i]);
+ }
 
 
 
@@ -232,7 +237,7 @@ console.log(lastThree(pies));
 // // removing elements splice
 //     var missingBonds = bonds.splice(bonds.indexOf("Moore"), 2);
 //     console.log(bonds);
-//     console.log(missingBonds);
+//     console.logw(missingBonds);
 //
 //
 // // adding elements with splice
