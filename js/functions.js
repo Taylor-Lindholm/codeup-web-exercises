@@ -10,10 +10,14 @@
  */
 
 function sayHello(name) {
-    return "Hello, " + name + "!";
+    if ("string" === typeof name) {
+        return "Hello, " + name + "!";
+    } else {
+        return "Sorry " + name + " isn't a string."
+    }
 }
 console.log(sayHello("codeup"));
-
+console.log(2.75);
 /**
  * TODO:
  * Call the function 'sayHello' and pass your name as a string literal argument.
@@ -57,7 +61,11 @@ var random = Math.floor((Math.random() * 3) + 1);
  */
 
 function isTwo(x) {
-    return x === 2;
+    if("number" === typeof x) {
+        return x === 2;
+    } else {
+        return "that is not even a number";
+    }
 }
 
 console.log(isTwo(random));
@@ -75,10 +83,15 @@ console.log(isTwo(random));
  */
 
 function calculateTip(x, y) {
-    return x * y;
+    if("number" === (typeof x && typeof y)) {
+        return x * y;
+    } else {
+        return "Please enter valid number";
+    }
 }
 
 console.log(calculateTip(.2, 20));
+console.log(calculateTip("bee", null));
 
 
 /**
@@ -88,7 +101,7 @@ console.log(calculateTip(.2, 20));
  * then display the dollar amount they should tip
  */
 
-var num1 = (Number(prompt("What percentage in desimals would you like to tip?")));
+var num1 = (prompt("What percentage in desimals would you like to tip?"));
 var num2 = (Number(prompt("How much was your bill?")));
 alert("your tip amount is: $" + calculateTip(num1, num2));
 
