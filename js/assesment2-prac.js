@@ -1,12 +1,9 @@
 //Write a function named calculateTax that takes in two inputs representing the totalPaid and the taxPercent. If both inputs are numeric or numeric strings, calculateTax should return the total with tax added in a string looking like: "$XX.XX". If either or both inputs are not numeric or numeric strings, calculateTax should return false.
 function calculateTax(totalPaid, taxPercentage){
-    if(typeof totalPaid && typeof taxPercentage === "number"){
-        var fixedAmt = taxPercentage.length
-        var taxAmount = totalPaid * taxPercentage.toFixed(fixedAmt)
-        var total = totalPaid + taxAmount
-        return total
-    } else {
+    if(typeof totalPaid || taxPercentage === "object" || "boolean") {
         return false;
+    } else if(typeof totalPaid && typeof taxPercentage === "number"){
+        return ((taxPercentage / 100) * totalPaid) + totalPaid;
     }
 }
 
@@ -14,12 +11,12 @@ function calculateTax(totalPaid, taxPercentage){
 
 
 console.log(calculateTax(25, 8)); // "$27.00"
-calculateTax(10, 12)             // "$11.20"
-calculateTax(120, 15.5) // "$138.60"
-calculateTax(10, true)           // false
-calculateTax([1, 2, 3], 10)      // false
-calculateTax("Codeup", 100)      // false
-calculateTax()                   // false
+console.log(calculateTax(10, 12))             // "$11.20"
+console.log(calculateTax(120, 15.5)) // "$138.60"
+console.log(calculateTax(10, true))           // false
+console.log(calculateTax([1, 2, 3], 10))      // false
+console.log(calculateTax("Codeup", 100))      // false
+//console.log(calculateTax()                   // false
 
 //basic operators
 //var a = 1;
