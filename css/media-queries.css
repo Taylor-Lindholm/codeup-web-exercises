@@ -73,13 +73,35 @@ body {
     }
     h1 {
         font-size: 150%;
+        float: left;
+        margin-bottom: 2em;
     }
-    .nav-links{
+    li {
+        list-style-type: none;
+        margin: 1em;
+    }
 
-    }
-    h1 .nav-links{
+    .nav-links{
+        float: right;
         display: flex;
-        flex-direction: row;
+    }
+    .header-img.resize{
+        width: 890px;
+        height: auto;
+    }
+    h2{
+        margin-top: 1.5em;
+    }
+    .main {
+        width: 60%;
+        float: left;
+    }
+    #sub-section {
+        width: 40%;
+        float: right;
+    }
+    footer{
+        margin-top: 10em;
     }
 
 
