@@ -57,16 +57,27 @@ var codeUpSAmarker = new mapboxgl.Marker({color: "#78a34a", draggable: true}).se
 
 // TODO TOGETHER: We'll comment out the popup we just added. Next, let's add a popup to the Alamo marker!
 
-var alamoPopup = new mapboxgl.Popup().setLngLat([-98.4861, 29.4260]).setHTML("<p>The Alamo</p>").addTo(map);
-
-alamoMarker.setPopup(alamoPopup);
+// var alamoPopup = new mapboxgl.Popup().setLngLat([-98.4861, 29.4260]).setHTML("<p>The Alamo</p>").addTo(map);
+//
+// alamoMarker.setPopup(alamoPopup);
 
 
 
 // TODO: Review the popup docs. What are some additional options we can pass to the popup? Choose one and experiment with implementing that option to a popup!
 // TODO: Try setting the text of a popup by using ".setText()" instead of ".setHTML()" - what happens with HTML tags between the two?
 
+var alamoPopup = new mapboxgl.Popup().setLngLat([-98.4861, 29.4260]).setText("Remember the Alamo").addTo(map);
 
+    alamoPopup.on('close', function(){
+        console.log('popup closed');
+    alamoPopup.on('open', function(){
+        console.log('popup open');
+        })
+
+
+})
+
+alamoMarker.setPopup(alamoPopup);
 
 /**********************************************
  * 					Geocoder
@@ -78,15 +89,43 @@ alamoMarker.setPopup(alamoPopup);
 // TODO TOGETHER: Using the Geocoder helper function, log the coordinates of Codeup and recenter the map to focus on Codeup.
 //https://docs.mapbox.com/mapbox-gl-js/api/map/#map#setcenter
 
+// geocode("608 Navarro St #600, San Antonio, TX, 78205", mapBoxKey).then(function (results){
+//     map.setCenter(results)
+// })
+
+
 //TODO: Using the geocode method above, add a marker at Codeup to the map
+// dallas 701 commerce st #100a, dallas, tx, 75202
+
+// geocode("dallas 701 commerce st #100a, dallas, tx, 75202", mapBoxKey).then(function(results){
+//     new mapboxgl.Marker().setLngLat(results).addTo(map)
+//
+//     map.flyTo({center: results})
+// })
 
 
 //TODO: Instead of setCenter try using map.jumpTo()
+// geocode("dallas 701 commerce st #100a, dallas, tx, 75202", mapBoxKey).then(function(results){
+//     new mapboxgl.Marker().setLngLat(results).addTo(map)
+//
+//     map.jumpTo({center: results})
+// })
+
+
 //TODO: Instead of setCenter try using map.flyTo()
 
+// geocode("dallas 701 commerce st #100a, dallas, tx, 75202", mapBoxKey).then(function(results){
+//     new mapboxgl.Marker().setLngLat(results).addTo(map)
+//
+//     map.flyTo({center: results})
+// })
 
 
 // TODO TOGETHER: Reverse Geocoding: Using the reverse geocoding method, enter the coordinates {lng: -98.4861, lat: 29.4260} to get a physical address for the Alamo
+
+reverseGeocode({lat: 29.4260, lng: -98.4861}, mapBoxKey).then(function(results){
+    console.log(results);
+})
 
 // TODO: Reverse geocode coordinates of your choice using the reverse geocode method
 
