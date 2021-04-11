@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="js/jquery-2.2.4.js"></script>
+    <link rel="stylesheet" href="css/jquery_fag.css">
 </head>
 <body>
 
@@ -38,8 +39,14 @@
         <dt>Glacier National Park in Montana</dt>
         <dd class="invisible">For breathtaking landscapes and great weather, it’s hard to beat Glacier National Park in Montana</dd>
     </dl>
+    <button id="button">Where'd it go?</button>
 <script>
     "use strict";
+
+    $('#button').click(function (){
+        $('dd').toggleClass('invisible');
+    });
+
 
     window.onload = function () {
         console.log(' Five thousand years later, the page has loaded.');
