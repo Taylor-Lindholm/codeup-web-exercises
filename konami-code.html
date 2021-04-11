@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konami Code</title>
+    <script src="js/jquery-2.2.4.js"></script>
+</head>
+<body>
+<h1>Konami Code</h1>
+
+<script>
+    "use strict";
+    var konamiCodeKeys = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a", "Enter"]
+    var keysPressed = [];
+
+    $(document).keyup(function(event){
+        //console.log(event.key);
+        keysPressed.push(event.key);
+        if(keysPressed.length > 11) {
+            keysPressed.shift();
+        }
+        if(konamiCodeKeys.toString().toLowerCase() === keysPressed.toString().toLowerCase()) {
+            $("body").html("You get 30 lives. Now go code some more!");
+        }
+        console.log(keysPressed);
+    });
+</script>
+
+</body>
+</html>
