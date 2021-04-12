@@ -1,3 +1,6 @@
 .invisible {
     visibility: hidden;
 }
+.yellow {
+    background-color: #d4ff00;
+}

@@ -39,13 +39,62 @@
         <dt>Glacier National Park in Montana</dt>
         <dd class="invisible">For breathtaking landscapes and great weather, it’s hard to beat Glacier National Park in Montana</dd>
     </dl>
+    <h1>MORE PARKS</h1>
+
+    <h3 id="national-parks">National Parks</h3>
+
+    <ul></ul>
+        <li class="national-parks">Gateway Arch</li>
+        <li class="national-parks">Hot Springs</li>
+        <li class="national-parks">Channel Islands</li>
+        <li class="national-parks">Big Cypress</li>
+
+    <h3 id="tx-stPark">Texas State Parks</h3>
+
+    <ul></ul>
+        <li class="tx-stPark">Blanco</li>
+        <li class="tx-stPark">Garner</li>
+        <li class="tx-stPark">Longhorn Cavern</li>
+        <li class="tx-stPark">Kerrville</li>
+
+    <h3 id="wsh-stPark">Washington State Parks</h3>
+
+        <ul class="wsh-stPark">Millersylvania</ul>
+        <li class="wsh-stPark">Ike Kinswa</li>
+        <li class="wsh-stPark">Joemma Beach</li>
+        <li class="wsh-stPark">Kopachuck</li>
+
     <button id="button">Where'd it go?</button>
+    <button id="yellow">like yellow?</button>
+
+
+    <!-- jquery, jss code -->
 <script>
     "use strict";
 
     $('#button').click(function (){
         $('dd').toggleClass('invisible');
     });
+    $('#yellow').click(function(){
+        $('li').last().css('background-color', '#ff0');
+
+    });
+
+    $('#national-parks').click(function(){
+        $('.national-parks').css('fontWeight', 'bold');
+    });
+
+    $('#tx-stPark').click(function(){
+        $('.tx-stPark').css('fontWeight', 'bold');
+    });
+
+    $('#wsh-stPark').click(function (){
+        $('.wsh-stPark').css('fontWeight', 'bold');
+    });
+
+    $('li').click(function(){
+        $(this).parent().children().first().css('color', '#00ffcc')
+    })
 
 
     window.onload = function () {
