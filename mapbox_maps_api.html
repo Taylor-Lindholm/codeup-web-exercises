@@ -7,10 +7,15 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
     <script src="js/keys.js"></script>
+    <script src="js/mapbox-geocoder-utils.js"></script>
 
 </head>
 <body>
+<!-- map -->
 
+<div id='map' style='width: 400px; height: 300px;'></div>
+
+<!-- js and jquery -->
 <script>
     mapboxgl.accessToken = mapBoxKey;
     var map = new mapboxgl.Map({
@@ -19,7 +24,18 @@
         center: [-98.4861, 29.4252], // starting position [lng, lat]
         zoom: 9 // starting zoom
     });
+
+    geocode("120 produce row, San Antonio, TX 78207", mapBoxKey).then(function(results){
+         new mapboxgl.Marker().setLngLat(results).addTo(map)})
+
+    geocode("1127 harry wurzbach Rd, San Antonio, TX 78209", mapBoxKey).then(function(results){
+        new mapboxgl.Marker().setLngLat(results).addTo(map)})
+
+    geocode("3709 N St Mary's St, San Antonio, Tx 78212", mapBoxKey).then(function(results){
+        new mapboxgl.Marker().setLngLat(results).addTo(map)})
+
 </script>
+
 
 </body>
 </html>
