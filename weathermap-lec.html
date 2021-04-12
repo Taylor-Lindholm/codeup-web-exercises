@@ -39,7 +39,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-<script src="js/keys.js"></script>
+        <script src="js/keys.js"></script>
 
 <script>
   $(document).ready(function () {
@@ -50,14 +50,27 @@
     // GET REQUEST to OpenWeatherMap using city parameter
     // https://openweathermap.org/current
 
-
+  // $.get("https://api.openweathermap.org/data/2.5/weather", {
+  //   q: "Canyon Lake, Tx, Us",
+  //   appid: weatherMapKey,
+  //   units: "imperial"
+  // }).done(function(results){
+  //   console.log(results);
+  // });
 
 
     // TODO: How can we get imperial units instead?
-
+  // done above
     // TODO: What are some additional ways we can get the weather from this API?
 
-
+    $.get("https://api.openweathermap.org/data/2.5/weather", {
+      appid: weatherMapKey,
+      lat: 29.8752,
+      lon: -98.2625,
+      units: "imperial"
+    }).done(function (results){
+      console.log(results);
+    });
 
 
 
@@ -76,6 +89,15 @@
 
     // TODO: What parameter can we include in order to get the daily forecast only
 
+    $.get("https://api.openweathermap.org/data/2.5/onecall", {
+      appid: weatherMapKey,
+      lat: 29.8752,
+      lon: -98.2625,
+      units: "imperial",
+      exclude: "current,minutely,hourly,alerts"
+    }).done(function(results){
+      console.log(results)
+    })
 
 
   });
