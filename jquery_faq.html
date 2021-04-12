@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="css/jquery_faq.css">
 </head>
 <body>
-
+    <div class="newsletter ">
+        <h1>Would you like to sign up for our newsletter?</h1>
+        <p>yeah us either <span>X</span></p>
+    </div>
+    <h3 class="invisible" id="register">Register with us.</h3>
     <dl>
         <dt>Great Smoky Mountains National Park </dt>
         <dd class="invisible">The most visited national park in the United States</dd>
@@ -94,6 +98,10 @@
 
     $('li').click(function(){
         $(this).parent().children().first().css('color', '#00ffcc')
+    })
+
+    $('span').click(function (){
+        $('.newsletter').toggleClass('invisible');
     })
 
 
