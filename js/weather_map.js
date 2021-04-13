@@ -11,6 +11,7 @@ var map = new mapboxgl.Map({
 // jQuery
 
 $(document).ready(function(){
+//button listener
 
     var cityVar = "Canyon Lake, Tx, USA"
 
@@ -19,7 +20,20 @@ $(document).ready(function(){
     var cityVar = $('.form-control').val();
     console.log(cityVar);
     })
+// map marker
 
+    function gettingCords() {
+        var currentCords = marker.getLngLat();
+        console.log(currentCords);
+    }
+
+    var marker = new mapboxgl.Marker({
+        color: "#fd8ffa",
+        draggable: true
+    }).setLngLat([-98.2625, 29.8752])
+        .addTo(map);
+
+    marker.on("dragend", () => gettingCords());
 
 
     console.log("5 thousand years later");
