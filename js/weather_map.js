@@ -13,7 +13,6 @@ var map = new mapboxgl.Map({
 $(document).ready(function(){
 //button listener
 
-    var cityVar = "Canyon Lake, Tx, USA"
 
     $('button').click(function(){
         event.preventDefault();
@@ -34,6 +33,16 @@ $(document).ready(function(){
         .addTo(map);
 
     marker.on("dragend", () => gettingCords());
+
+// weather
+
+    $.get("https://api.openweathermap.org/data/2.5/weather", {
+      q: "Canyon Lake, Tx, Us",
+      appid: weatherMapKey,
+      units: "imperial"
+    }).done(function(results){
+      console.log(results);
+    });
 
 
     console.log("5 thousand years later");
