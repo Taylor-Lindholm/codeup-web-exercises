@@ -12,8 +12,6 @@ var map = new mapboxgl.Map({
 
 $(document).ready(function(){
 //button listener
-
-
     $("button").click(function () {
         event.preventDefault();
         var cityVar = $(".form-control").val();
@@ -51,6 +49,7 @@ $(document).ready(function(){
         .addTo(map);
 
     marker.on("dragend", () => gettingCords());
+    forecast([29.8752, -98.2625]);
 
 // weather
 
@@ -64,6 +63,25 @@ $(document).ready(function(){
             exclude: "minutely,hourly,alerts"
         }).done(function (results) {
             console.log(results);
+            $('.weather-cards').empty();
+            for(let forecast in results.daily) {
+                console.log(forecast);
+                let forecastData = results.daily[forecast];
+                let html = `<div class="card" style="width: 19%;">
+        <div class="card-header" id="date">
+        ${new Date(forecastData.dt * 1000).toDateString()}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" class="temp">${forecastData.temp.min}/${forecastData.temp.max}</li>
+            <li class="list-group-item" class="description">${forecastData.weather}</li>
+            <li class="list-group-item" class="humidity">Humidity: ${forecastData.humidity}</li>
+            <li class="list-group-item" class="wind">${forecastData.wind_speed}</li>
+            <li class="list-group-item" class="pressure">${forecastData.pressure}</li>
+        </ul>
+    </div>`;
+
+                $('.weather-cards').append(html);
+            }
         });
     };
     console.log(forecast());
