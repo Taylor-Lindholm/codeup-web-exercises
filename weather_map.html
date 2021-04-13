@@ -23,12 +23,12 @@
 
 <div id="header-box">
     <h5 id="header-name">Weather App</h5>
-    <p id="current-city"></p>
+    <p class="current-city">Current city holder</p>
 </div>
 
 <!--search-->
 
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar">
     <a class="navbar-brand">Place:</a>
     <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -37,11 +37,68 @@
 </nav>
 
 <!--weather cards-->
+<div class="weather-cards">
+    <div class="card" style="width: 19%;">
+        <div class="card-header" id="card1-date">
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" id="card1-temp"></li>
+            <li class="list-group-item" id="card1-description"></li>
+            <li class="list-group-item" id="card1-humidity"></li>
+            <li class="list-group-item" id="card1-wind"></li>
+            <li class="list-group-item" id="card1-pressure"></li>
+        </ul>
+    </div>
+    <div class="card" style="width: 19%;">
+        <div class="card-header" id="card2-date">
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" id="card2-temp"></li>
+            <li class="list-group-item" id="card2-description"></li>
+            <li class="list-group-item" id="card2-humidity"></li>
+            <li class="list-group-item" id="card2-wind"></li>
+            <li class="list-group-item" id="card2-pressure"></li>
+        </ul>
+    </div>
+    <div class="card" style="width: 19%;">
+        <div class="card-header" id="card3-date">
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" id="card3-temp"></li>
+            <li class="list-group-item" id="card3-description"></li>
+            <li class="list-group-item" id="card3-humidity"></li>
+            <li class="list-group-item" id="card3-wind"></li>
+            <li class="list-group-item" id="card3-pressure"></li>
+        </ul>
+    </div>
+    <div class="card" style="width: 19%;">
+        <div class="card-header" id="card4-date">
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" id="card4-temp"></li>
+            <li class="list-group-item" id="card4-description"></li>
+            <li class="list-group-item" id="card4-humidity"></li>
+            <li class="list-group-item" id="card4-wind"></li>
+            <li class="list-group-item" id="card4-pressure"></li>
+        </ul>
+    </div>
+    <div class="card" style="width: 19%;">
+        <div class="card-header" id="card5-date">
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" id="card5-temp"></li>
+            <li class="list-group-item" id="card5-description"></li>
+            <li class="list-group-item" id="card5-humidity"></li>
+            <li class="list-group-item" id="card5-wind"></li>
+            <li class="list-group-item" id="card5-pressure"></li>
+        </ul>
+    </div>
 
+</div>
 <!--map-->
-
-<div id='map' style='width: 400px; height: 300px;'></div>
-
+<div class="map">
+<div id='map' style='width: 1200px; height: 300px;'></div>
+</div>
 <!-- JavaScript tags-->
 <!-- keys -->
 <script src="js/keys.js"></script>

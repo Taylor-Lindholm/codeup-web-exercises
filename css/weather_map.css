@@ -1,0 +1,21 @@
+#header-box{
+    display: flex;
+    justify-content: space-between;
+}
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.weather-cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+.map{
+    display: flex;
+    justify-content: center;
+}
