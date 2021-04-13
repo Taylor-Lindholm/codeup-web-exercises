@@ -24,6 +24,10 @@ $(document).ready(function(){
     function gettingCords() {
         var currentCords = marker.getLngLat();
         console.log(currentCords);
+        reverseGeocode({lat: currentCords.lat, lng: currentCords.lng}, mapBoxKey).then(function (data){
+            console.log(forecast(data));
+
+        })
     }
 
     var marker = new mapboxgl.Marker({
@@ -36,14 +40,18 @@ $(document).ready(function(){
 
 // weather
 
-    $.get("https://api.openweathermap.org/data/2.5/weather", {
-      q: "Canyon Lake, Tx, Us",
-      appid: weatherMapKey,
-      units: "imperial"
-    }).done(function(results){
-      console.log(results);
-    });
-
-
+    function forecast(array) {
+        console.log(array);
+        $.get("https://api.openweathermap.org/data/2.5/onecall", {
+            lat: array[0],
+            lon: array[1],
+            appid: weatherMapKey,
+            units: "imperial",
+            exclude: "minutely,hourly,alerts"
+        }).done(function (results) {
+            console.log(results);
+        });
+    };
+    console.log(forecast());
     console.log("5 thousand years later");
 })
