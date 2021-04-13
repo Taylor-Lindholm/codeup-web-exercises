@@ -14,11 +14,25 @@ $(document).ready(function(){
 //button listener
 
 
-    $('button').click(function(){
+    $("button").click(function () {
         event.preventDefault();
-    var cityVar = $('.form-control').val();
-    console.log(cityVar);
-    })
+        var cityVar = $(".form-control").val();
+        var cityString = cityVar.toString();
+        console.log(cityVar);
+
+        geocode(cityString, mapBoxKey).then(function (data) {
+            console.log(data);
+            var latLng = {
+                lat: data[1],
+                lng: data[0]
+            }
+            var newMarker = new mapboxgl.Marker().setLngLat(latLng).addTo(map);
+            var cityArray = data.reverse();
+            map.flyTo({ center: latLng });
+            console.log(cityArray);
+            console.log(forecast(cityArray));
+        });
+    });
 // map marker
 
     function gettingCords() {
