@@ -63,6 +63,8 @@ $(document).ready(function(){
             exclude: "minutely,hourly,alerts"
         }).done(function (results) {
             console.log(results);
+            let currentWeather = results.current.weather[0].main;
+            console.log(currentWeather);
             $('.weather-cards').empty();
 
             let dayInteval = $('#day-int-select').val();
@@ -75,7 +77,7 @@ $(document).ready(function(){
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item" class="temp">${forecastData.temp.min}/${forecastData.temp.max}</li>
-            <li class="list-group-item" class="description">${forecastData.weather}</li>
+            <li class="list-group-item" class="description">${forecastData.weather[0].main}</li>
             <li class="list-group-item" class="humidity">Humidity: ${forecastData.humidity}</li>
             <li class="list-group-item" class="wind">${forecastData.wind_speed}</li>
             <li class="list-group-item" class="pressure">${forecastData.pressure}</li>
@@ -86,6 +88,5 @@ $(document).ready(function(){
             }
         });
     };
-    console.log(forecast());
     console.log("5 thousand years later");
 })
