@@ -24,7 +24,7 @@ $(document).ready(function(){
                 lat: data[1],
                 lng: data[0]
             }
-            var newMarker = new mapboxgl.Marker().setLngLat(latLng).addTo(map);
+            let marker = new mapboxgl.Marker().setLngLat(latLng).addTo(map);
             var cityArray = data.reverse();
             map.flyTo({ center: latLng });
             console.log(cityArray);
@@ -42,7 +42,7 @@ $(document).ready(function(){
         })
     }
 
-    var marker = new mapboxgl.Marker({
+    let marker = new mapboxgl.Marker({
         color: "#fd8ffa",
         draggable: true
     }).setLngLat([-98.2625, 29.8752])
@@ -64,9 +64,11 @@ $(document).ready(function(){
         }).done(function (results) {
             console.log(results);
             $('.weather-cards').empty();
-            for(let forecast in results.daily) {
-                console.log(forecast);
-                let forecastData = results.daily[forecast];
+
+            let dayInteval = $('#day-int-select').val();
+
+            for( dayIndex = 0; dayIndex <= dayInteval; dayIndex++) {
+                let forecastData = results.daily[dayIndex];
                 let html = `<div class="card" style="width: 19%;">
         <div class="card-header" id="date">
         ${new Date(forecastData.dt * 1000).toDateString()}
