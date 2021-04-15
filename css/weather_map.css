@@ -1,21 +1,55 @@
 #header-box{
     display: flex;
     justify-content: space-between;
+    background-color: #41533b;
 }
 .navbar {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
 }
 .weather-cards{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
+    height: 75%;
+}
+.weather-cards li{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 16px;
+
+
+
 }
 .map{
     display: flex;
     justify-content: center;
+}
+.day-select{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4px;
+
+}
+.snowy{
+    background-image: url("codeup-web-exercises/images/snowy.jpg")
+}
+.thunderstorm{
+    background-image: url("codeup-web-exercises/images/thunderstorm.jpg")
+}
+.sunny{
+    background-image: url("/codeup-web-exercises/images/sunny.jpg");
+}
+.cloudy{
+    background-image: url("/codeup-web-exercises/images/cloudy.jpg");
+}
+.windy{
+    background-image: url("codeup-web-exercises/Images/monique-carrati-ekRRG_cdT8I-unsplash.jpg")
 }

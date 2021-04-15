@@ -65,19 +65,47 @@ $(document).ready(function(){
             console.log(results);
             let currentWeather = results.current.weather[0].main;
             console.log(currentWeather);
+            let currentClass = $('body').attr("class");
+            console.log(currentClass);
+            switch (currentWeather) {
+                case "Clouds":
+                    $('body').removeClass(currentClass);
+                    $('body').addClass('cloudy');
+                    break;
+                case "Thunderstorm":
+                    $('body').removeClass(currentClass);
+                    $('body').addClass('thunderstorm');
+                    break;
+                case "Drizzle":
+                    $('body').removeClass(currentClass);
+                    $('body').addClass('cloudy');
+                    break;
+                case "Snow":
+                    $('body').removeClass(currentClass);
+                    $('body').addClass('snowy');
+                    break;
+                case "Clear":
+                    $('body').removeClass(currentClass);
+                    $('body').addClass('sunny');
+                    break;
+                case "Rain":
+                    $('body').removeClass(currentClass);
+                    $('body').addClass('thunderstorm')
+
+            }
             $('.weather-cards').empty();
 
             let dayInteval = $('#day-int-select').val();
 
             for( dayIndex = 0; dayIndex <= dayInteval; dayIndex++) {
                 let forecastData = results.daily[dayIndex];
-                let html = `<div class="card" style="width: 19%;">
+                let html = `<div class="card" style="width: 15%;">
         <div class="card-header" id="date">
         ${new Date(forecastData.dt * 1000).toDateString()}
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item" class="temp">${forecastData.temp.min}/${forecastData.temp.max}</li>
-            <li class="list-group-item" class="description">${forecastData.weather[0].main}</li>
+            <li class="list-group-item" class="description">${forecastData.weather[0].description}</li>
             <li class="list-group-item" class="humidity">Humidity: ${forecastData.humidity}</li>
             <li class="list-group-item" class="wind">${forecastData.wind_speed}</li>
             <li class="list-group-item" class="pressure">${forecastData.pressure}</li>

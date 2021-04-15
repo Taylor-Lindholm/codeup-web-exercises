@@ -17,7 +17,7 @@
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body class="snowy">
 
 <!--header-->
 
@@ -29,17 +29,19 @@
 <!--search-->
 
 <nav class="navbar">
-    <a class="navbar-brand">Place:</a>
+    <a class="navbar-brand"></a>
     <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control mr-sm-2" placeholder="City, St" type="search"  aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        <select id="day-int-select">
-            <option value="2">3 Days</option>
-            <option value="4">5 Days</option>
-            <option value="6">7 Days</option>
-        </select>
     </form>
 </nav>
+<div class="day-select">
+<select id="day-int-select">
+    <option value="2">3 Days</option>
+    <option value="4">5 Days</option>
+    <option value="6">7 Days</option>
+</select>
+</div>
 
 <!--weather cards-->
 <div class="weather-cards">
