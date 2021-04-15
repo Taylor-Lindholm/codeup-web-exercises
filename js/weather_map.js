@@ -99,12 +99,12 @@ $(document).ready(function(){
 
             for( dayIndex = 0; dayIndex <= dayInteval; dayIndex++) {
                 let forecastData = results.daily[dayIndex];
-                let html = `<div class="card" style="width: 15%;">
+                let html = `<div class="card" style="width: 10%;">
         <div class="card-header" id="date">
         ${new Date(forecastData.dt * 1000).toDateString()}
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item" class="temp">${forecastData.temp.min}/${forecastData.temp.max}</li>
+            <li class="list-group-item" class="temp">${forecastData.temp.min}/${forecastData.temp.max}${forecastData.weather[2]}</li>
             <li class="list-group-item" class="description">${forecastData.weather[0].description}</li>
             <li class="list-group-item" class="humidity">Humidity: ${forecastData.humidity}</li>
             <li class="list-group-item" class="wind">${forecastData.wind_speed}</li>

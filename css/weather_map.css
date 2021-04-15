@@ -39,7 +39,7 @@
 
 }
 .snowy{
-    background-image: url("codeup-web-exercises/images/snowy.jpg")
+    background-image: url("../images/snowy.jpg")
 }
 .thunderstorm{
     background-image: url("codeup-web-exercises/images/thunderstorm.jpg")
@@ -48,7 +48,7 @@
     background-image: url("/codeup-web-exercises/images/sunny.jpg");
 }
 .cloudy{
-    background-image: url("/codeup-web-exercises/images/cloudy.jpg");
+    background-image: url("../images/cloudy.jpg");
 }
 .windy{
     background-image: url("codeup-web-exercises/Images/monique-carrati-ekRRG_cdT8I-unsplash.jpg")
