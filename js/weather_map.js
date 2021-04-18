@@ -1,22 +1,36 @@
-// javascript
-
-mapboxgl.accessToken = mapBoxKey;
-var map = new mapboxgl.Map({
-    container: 'map', // container ID
-    style: 'mapbox://styles/mapbox/streets-v11', // style URL
-    center: [-98.2625, 29.8752], // starting position [lng, lat]
-    zoom: 9 // starting zoom
-});
-
-// jQuery
-
 $(document).ready(function(){
-//button listener
+//map
+    mapboxgl.accessToken = mapBoxKey;
+    var map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+        center: [-98.2625, 29.8752], // starting position [lng, lat]
+        zoom: 9 // starting zoom
+    });
+
+    function gettingCords() {
+        var currentCords = marker.getLngLat();
+        console.log(currentCords);
+        forecast([currentCords.lat, currentCords.lng]);
+    }
+
+    let marker = new mapboxgl.Marker({
+        color: "#fd8ffa",
+        draggable: true,
+        zoom: 10
+    }).setLngLat([-98.2625, 29.8752])
+        .addTo(map);
+
+    marker.on("dragend", () => gettingCords());
+    forecast([29.8752, -98.2625]);
+
+//search listener
     $("button").click(function () {
         event.preventDefault();
         var cityVar = $(".form-control").val();
         var cityString = cityVar.toString();
         console.log(cityVar);
+        marker.remove();
 
         geocode(cityString, mapBoxKey).then(function (data) {
             console.log(data);
@@ -24,9 +38,12 @@ $(document).ready(function(){
                 lat: data[1],
                 lng: data[0]
             }
-            let marker = new mapboxgl.Marker().setLngLat(latLng).addTo(map);
+            let marker = new mapboxgl.Marker({
+                color: "#fd8ffa",
+                draggable: true
+            }).setLngLat(latLng).addTo(map);
             var cityArray = data.reverse();
-            map.flyTo({ center: latLng });
+            map.flyTo({ center: latLng, zoom: 11 });
             console.log(cityArray);
             console.log(forecast(cityArray));
         });
@@ -42,23 +59,6 @@ $(document).ready(function(){
         }
     })
 
-// map marker
-
-    function gettingCords() {
-        var currentCords = marker.getLngLat();
-        console.log(currentCords);
-        forecast([currentCords.lat, currentCords.lng]);
-    }
-
-    let marker = new mapboxgl.Marker({
-        color: "#fd8ffa",
-        draggable: true
-    }).setLngLat([-98.2625, 29.8752])
-        .addTo(map);
-
-    marker.on("dragend", () => gettingCords());
-    forecast([29.8752, -98.2625]);
-
 // weather
 
     function forecast(array) {
@@ -66,7 +66,10 @@ $(document).ready(function(){
         reverseGeocode({lat: array[0], lng: array[1]}, mapBoxKey).then(function (data){
             console.log(data);
             let locationArray = data.split(",")
-            let locationHTML = `<h3>Current Location: ${locationArray[1]},${locationArray[2]}</h3>`
+            let locState = locationArray[2].split(" ");
+            locState.length = 2;
+            console.log(locState);
+            let locationHTML = `<h3>${locationArray[1]},${locState[1]}</h3>`
             $('.location-box').empty();
             $('.location-box').append(locationHTML);
 
@@ -107,39 +110,20 @@ $(document).ready(function(){
                 case "Rain":
                     $('body').removeClass(currentClass);
                     $('body').addClass('thunderstorm')
-
             }
             $('.weather-cards').empty();
-
             let dayInteval = $('#day-int-select').val();
-
             for( dayIndex = 0; dayIndex <= dayInteval; dayIndex++) {
                 let forecastData = results.daily[dayIndex];
-    //             let html = `<div class="card" style="width: 25%;">
-    //     <div class="card-header" id="date">
-    //     ${new Date(forecastData.dt * 1000).toDateString()}
-    //     </div>
-    //     <ul class="list-group list-group-flush">
-    //         <li class="list-group-item" class="temp">${forecastData.temp.min}/${forecastData.temp.max}
-    //             <img src="http://openweathermap.org/img/wn/${forecastData.weather[0].icon}@2x.png">
-    //         </li>
-    //         <li class="list-group-item" class="description">${forecastData.weather[0].description}</li>
-    //         <li class="list-group-item" class="humidity">Humidity: ${forecastData.humidity}</li>
-    //         <li class="list-group-item" class="wind">${forecastData.wind_speed}</li>
-    //         <li class="list-group-item" class="pressure">${forecastData.pressure}</li>
-    //     </ul>
-    // </div>`;
-                let html =`
-                <!--weather card-->
-                <div class="card card-weather">
+                let html =
+                `<div class="card card-weather">
                     <div class="card-body">
                         <div class="weather-date-location">
-                            
-                            <p class="text-gray"> <span class="weather-date">${new Date(forecastData.dt * 1000).toDateString()}</span> </p>
+                           <p class="text-gray"> <span class="weather-date">${new Date(forecastData.dt * 1000).toDateString()}</span> </p>
                         </div>
                         <div class="weather-data d-flex">
                             <div class="mr-auto">
-                                <p class="display-3">Low ${forecastData.temp.min} <span class="symbol">°</span>F /</p><p class="display-3">High ${forecastData.temp.max} <span class="symbol">°</span>F</p>
+                                <p class="display-3">Low ${forecastData.temp.min} °F /High ${forecastData.temp.max} °F</p>
                                 <img src="http://openweathermap.org/img/wn/${forecastData.weather[0].icon}@2x.png">
                                 <p>${forecastData.weather[0].description}</p>
                                 <p>${forecastData.humidity}</p>
@@ -150,10 +134,7 @@ $(document).ready(function(){
                     </div>
                         </div>
                     </div>
-                </div>
-                <!--weather card ends-->
-                           `
-
+                </div>`
                 $('.weather-cards').append(html);
             }
         });

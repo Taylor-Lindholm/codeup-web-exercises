@@ -1,17 +1,26 @@
-#location-box {
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-bottom: 15px;
-    background-color: white;
-    opacity: 0.6;
+.location-box {
+    background-image: linear-gradient(
+            121deg
+            , #17a2b8, transparent);
+    width: 50%;
+    height: 4em;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+}
+.location-box h3{
+    font-size: xxx-large;
+    font-family: 'Lobster', cursive;
 }
 .location-container{
     display: flex;
     justify-content: center;
+    margin: 1em;
 }
 body {
     background-size: cover;
-
 }
 .navbar {
     display: flex;
@@ -20,33 +29,40 @@ body {
     align-items: center;
     margin-bottom: 1px;
 }
+.another-one{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+*::-webkit-scrollbar{
+    display: none;
+}
+.invisible-scrollbar{
+    overflow: scroll;
+    overflow-y: hidden;
+}
+
 .weather-cards{
     display: flex;
     flex-direction: row;
     margin-bottom: 4px;
     height: 75%;
-    flex-wrap: wrap;
+
     justify-content: space-evenly;
-    overflow: scroll;
+    width: max-content;
+    font-family: 'Oswald', sans-serif;
+
 }
-/*.weather-cards::-webkit-scrollbar{*/
-/*    display: none;*/
-/*}*/
-/*.weather-cards li{*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    justify-content: center;*/
-/*    font-size: 16px;*/
 
-
-
-/*}*/
 .map-selector {
     margin-right: 8px;
 }
 .map{
     display: flex;
     justify-content: center;
+    margin-bottom: 1em;
+    border-radius: 25px;
 }
 .map-hidden{
     visibility: hidden;
@@ -74,9 +90,10 @@ body {
 .windy{
     background-image: url("../Images/monique-carrati-ekRRG_cdT8I-unsplash.jpg")
 }
-
-/*cardtest*/
-
+.footer{
+    background-color: #17a2b8;
+}
+/*cards*/
 .stretch-card>.card {
     width: 100%;
     min-width: 100%
@@ -144,75 +161,36 @@ body {
 .card-weather .weather-date-location {
     padding: 0 0 38px
 }
-
-
-
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "Poppins", sans-serif;
-    font-weight: 500
-}
-
 .text-gray,
 .card-subtitle,
 .new-accounts ul.chats li.chat-persons a p.joined-date {
     color: #969696
 }
-
-p {
-    font-size: 13px
-}
-
 .text-gray,
 .card-subtitle,
 .new-accounts ul.chats li.chat-persons a p.joined-date {
     color: #969696
 }
-
 .card-weather .weather-data {
     padding: 0 0 4.75rem
 }
-
-.mr-auto,
-.mx-auto {
-    margin-right: auto !important
-}
-
 .display-3 {
-    font-size: 2.5rem
+    font-size: 20px
 }
-
 .card-weather .card-body {
     background: #ffffff
 }
-
 .card-weather .weakly-weather {
     background: #ffffff;
     overflow-x: auto
 }
-
 .card-weather .weakly-weather .weakly-weather-item {
     flex: 0 0 14.28%;
     border-right: 1px solid #f2f2f2;
     padding: 1rem;
     text-align: center
 }
-
 .mb-0,
 .my-0 {
     margin-bottom: 0 !important
-}
-
-.card-weather .weakly-weather .weakly-weather-item i {
-    font-size: 1.2rem
 }
