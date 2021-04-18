@@ -20,10 +20,10 @@
 <body class="">
 
 <!--header-->
+<div class="location-container">
+<div class="location-box">
 
-<div id="header-box">
-    <h5 id="header-name">Weather App</h5>
-    <p class="current-city">Current city holder</p>
+</div>
 </div>
 
 <!--search-->
@@ -35,7 +35,13 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>
-<div class="day-select">
+<div class="options-select">
+<div class="map-selector form-check">
+    <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" value=""> Map
+    </label>
+</div>
+
 <select id="day-int-select">
     <option value="2">3 Days</option>
     <option value="4">5 Days</option>
@@ -50,8 +56,8 @@
 
 </div>
 <!--map-->
-<div class="map">
-<div id='map' style='width: 1200px; height: 300px;'></div>
+<div class="map map-hidden">
+<div id='map' style='width: 300px; height: 300px;'></div>
 </div>
 <!-- JavaScript tags-->
 <!-- keys -->

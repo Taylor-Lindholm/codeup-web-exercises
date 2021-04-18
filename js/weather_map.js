@@ -31,15 +31,23 @@ $(document).ready(function(){
             console.log(forecast(cityArray));
         });
     });
+
+// map option listener
+
+    $('.form-check-input').change(function (){
+        if (this.checked) {
+            $('.map').removeClass('map-hidden');
+        } else {
+            $('.map').addClass('map-hidden');
+        }
+    })
+
 // map marker
 
     function gettingCords() {
         var currentCords = marker.getLngLat();
         console.log(currentCords);
-        reverseGeocode({lat: currentCords.lat, lng: currentCords.lng}, mapBoxKey).then(function (data){
-            console.log(forecast(data));
-
-        })
+        forecast([currentCords.lat, currentCords.lng]);
     }
 
     let marker = new mapboxgl.Marker({
@@ -55,6 +63,14 @@ $(document).ready(function(){
 
     function forecast(array) {
         console.log(array);
+        reverseGeocode({lat: array[0], lng: array[1]}, mapBoxKey).then(function (data){
+            console.log(data);
+            let locationArray = data.split(",")
+            let locationHTML = `<h3>Current Location: ${locationArray[1]},${locationArray[2]}</h3>`
+            $('.location-box').empty();
+            $('.location-box').append(locationHTML);
+
+        })
         $.get("https://api.openweathermap.org/data/2.5/onecall", {
             lat: array[0],
             lon: array[1],
@@ -99,18 +115,44 @@ $(document).ready(function(){
 
             for( dayIndex = 0; dayIndex <= dayInteval; dayIndex++) {
                 let forecastData = results.daily[dayIndex];
-                let html = `<div class="card" style="width: 10%;">
-        <div class="card-header" id="date">
-        ${new Date(forecastData.dt * 1000).toDateString()}
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item" class="temp">${forecastData.temp.min}/${forecastData.temp.max}${forecastData.weather[2]}</li>
-            <li class="list-group-item" class="description">${forecastData.weather[0].description}</li>
-            <li class="list-group-item" class="humidity">Humidity: ${forecastData.humidity}</li>
-            <li class="list-group-item" class="wind">${forecastData.wind_speed}</li>
-            <li class="list-group-item" class="pressure">${forecastData.pressure}</li>
-        </ul>
-    </div>`;
+    //             let html = `<div class="card" style="width: 25%;">
+    //     <div class="card-header" id="date">
+    //     ${new Date(forecastData.dt * 1000).toDateString()}
+    //     </div>
+    //     <ul class="list-group list-group-flush">
+    //         <li class="list-group-item" class="temp">${forecastData.temp.min}/${forecastData.temp.max}
+    //             <img src="http://openweathermap.org/img/wn/${forecastData.weather[0].icon}@2x.png">
+    //         </li>
+    //         <li class="list-group-item" class="description">${forecastData.weather[0].description}</li>
+    //         <li class="list-group-item" class="humidity">Humidity: ${forecastData.humidity}</li>
+    //         <li class="list-group-item" class="wind">${forecastData.wind_speed}</li>
+    //         <li class="list-group-item" class="pressure">${forecastData.pressure}</li>
+    //     </ul>
+    // </div>`;
+                let html =`
+                <!--weather card-->
+                <div class="card card-weather">
+                    <div class="card-body">
+                        <div class="weather-date-location">
+                            
+                            <p class="text-gray"> <span class="weather-date">${new Date(forecastData.dt * 1000).toDateString()}</span> </p>
+                        </div>
+                        <div class="weather-data d-flex">
+                            <div class="mr-auto">
+                                <p class="display-3">Low ${forecastData.temp.min} <span class="symbol">°</span>F /</p><p class="display-3">High ${forecastData.temp.max} <span class="symbol">°</span>F</p>
+                                <img src="http://openweathermap.org/img/wn/${forecastData.weather[0].icon}@2x.png">
+                                <p>${forecastData.weather[0].description}</p>
+                                <p>${forecastData.humidity}</p>
+                                <p>${forecastData.wind_speed}</p>
+                                <p>${forecastData.pressure}</p>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+                <!--weather card ends-->
+                           `
 
                 $('.weather-cards').append(html);
             }
