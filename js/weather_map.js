@@ -75,13 +75,10 @@ $(document).ready(function(){
 // weather
 
     function forecast(array) {
-        console.log(array);
         reverseGeocode({lat: array[0], lng: array[1]}, mapBoxKey).then(function (data){
-            console.log(data);
             let locationArray = data.split(",")
             let locState = locationArray[2].split(" ");
             locState.length = 2;
-            console.log(locState);
             let locationHTML = `<h3>${locationArray[1]},${locState[1]}</h3>`
             $('.location-box').empty();
             $('.location-box').append(locationHTML);
@@ -94,11 +91,8 @@ $(document).ready(function(){
             units: "imperial",
             exclude: "minutely,hourly,alerts"
         }).done(function (results) {
-            console.log(results);
             let currentWeather = results.current.weather[0].main;
-            console.log(currentWeather);
             let currentClass = $('body').attr("class");
-            console.log(currentClass);
             switch (currentWeather) {
                 case "Clouds":
                     $('body').removeClass(currentClass);
