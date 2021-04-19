@@ -1,7 +1,13 @@
 $(document).ready(function(){
+    var marker = new mapboxgl.Marker({
+        color: "#fd8ffa",
+        draggable: true
+    });
+
     function error(err){
         console.log(err.code, err.message);
     }
+
     let options = {
         enableHighAccuracy: true,
         timeout: 5000,
@@ -10,17 +16,9 @@ $(document).ready(function(){
     navigator.geolocation.getCurrentPosition(function (pos){
         let userCords = pos.coords;
         let latLng = [userCords.longitude, userCords.latitude,];
-        let marker = new mapboxgl.Marker({
-            color: "#fd8ffa",
-            draggable: true
-        }).setLngLat(latLng).addTo(map);
+         marker.setLngLat(latLng).addTo(map);
         map.flyTo({ center: latLng, zoom: 11 });
-        function gettingCords() {
-            var currentCords = marker.getLngLat();
-            console.log(currentCords);
-            forecast([currentCords.lat, currentCords.lng]);
-        }
-        marker.on("dragend", () => gettingCords());
+        marker.on("dragend", () => forecast([marker.getLngLat().lat, marker.getLngLat().lng]));
         forecast([userCords.latitude, userCords.longitude]);
     }, error, options);
 
@@ -33,40 +31,25 @@ $(document).ready(function(){
         zoom: 9 // starting zoom
     });
 
-    let marker = new mapboxgl.Marker({
-        color: "none",
-        draggable: true,
-        zoom: 10
-    }).setLngLat([-98.2625, 29.8752])
-        .addTo(map);
-
 //search listener
     $("button").click(function () {
         event.preventDefault();
         var cityVar = $(".form-control").val();
         var cityString = cityVar.toString();
         console.log(cityVar);
-        marker.remove();
         geocode(cityString, mapBoxKey).then(function (data) {
             console.log(data);
             var latLng = {
                 lat: data[1],
                 lng: data[0]
             };
-            let searchMarker = new mapboxgl.Marker({
-                color: "#fd8ffa",
-                draggable: true
-            }).setLngLat(latLng).addTo(map);
+            marker.setLngLat([data[0],data[1]]);
             var cityArray = data.reverse();
             map.flyTo({ center: latLng, zoom: 11 });
             console.log(cityArray);
             console.log(forecast(cityArray));
 
-            function gettingSearchCords() {
-                let searchCords = searchMarker.getLngLat();
-                forecast([searchCords.lat, searchCords.lng])
-            };
-            searchMarker.on("dragend", () => gettingSearchCords());
+            marker.on("dragend", () => forecast([marker.getLngLat().lat, marker.getLngLat().lng]));
         });
     });
 
@@ -81,8 +64,12 @@ $(document).ready(function(){
     })
 //day option listener
 
+    function markerLocation() {
+        let searchCords = marker.getLngLat();
+        forecast([searchCords.lat, searchCords.lng])
+    };
     $("#day-int-select").change(function(){
-        $(this).click(gettingCords());
+        $(this).click(markerLocation());
     });
 
 // weather
@@ -149,12 +136,12 @@ $(document).ready(function(){
                         </div>
                         <div class="weather-data d-flex">
                             <div class="mr-auto">
-                                <p class="display-3">Low ${forecastData.temp.min} °F /High ${forecastData.temp.max} °F</p>
+                                <p class="display-3">Low ${forecastData.temp.min}°F High ${forecastData.temp.max}°F</p>
                                 <img src="http://openweathermap.org/img/wn/${forecastData.weather[0].icon}@2x.png">
                                 <p>${forecastData.weather[0].description}</p>
-                                <p>${forecastData.humidity}</p>
-                                <p>${forecastData.wind_speed}</p>
-                                <p>${forecastData.pressure}</p>
+                                <p>Humidity: ${forecastData.humidity}</p>
+                                <p>Wind speed: ${forecastData.wind_speed}</p>
+                                <p>Pressure: ${forecastData.pressure}</p>
                             </div>
                         </div>
                     </div>
