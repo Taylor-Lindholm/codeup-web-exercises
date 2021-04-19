@@ -44,8 +44,8 @@
 <nav class="navbar">
     <a class="navbar-brand"></a>
     <form class="form-inline">
-        <input class="form-control mr-sm-2" placeholder="City, St" type="search"  aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <input class="form-control mr-sm-2" placeholder="Location" type="search"  aria-label="Search">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>
 <div class="options-select">
@@ -54,10 +54,10 @@
             <input type="checkbox" class="form-check-input" value=""> Map
         </label>
     </div>
-    <select id="day-int-select">
-        <option value="2">3 Days</option>
-        <option value="4">5 Days</option>
-        <option value="6">7 Days</option>
+    <select id="day-int-select" class="btn-outline-info">
+        <option class="day-options" value="2">3 Days</option>
+        <option class="day-options" value="4">5 Days</option>
+        <option class="day-options" value="6">7 Days</option>
     </select>
 </div>
 
@@ -72,10 +72,6 @@
 
 <div class="map map-hidden">
     <div id='map' style='width: 300px; height: 300px;'></div>
-</div>
-<!--footer-->
-<div class="footer text-center py-3">© 2021 Copyright:
-    <a href="https://mdbootstrap.com/"> github.com/Taylor-Lindholm</a>
 </div>
 
 <!-- keys -->

@@ -13,6 +13,10 @@ $(document).ready(function(){
         console.log(currentCords);
         forecast([currentCords.lat, currentCords.lng]);
     }
+    // function gettingSearchCords() {
+    //     let searchCords = searchMarker.getLngLat();
+    //     forecast([searchCords.lat, searchCords.lng])
+    // }
 
     let marker = new mapboxgl.Marker({
         color: "#fd8ffa",
@@ -22,6 +26,7 @@ $(document).ready(function(){
         .addTo(map);
 
     marker.on("dragend", () => gettingCords());
+    // searchMarker.on("dragend", () => gettingSearchCords())
     forecast([29.8752, -98.2625]);
 
 //search listener
@@ -31,14 +36,13 @@ $(document).ready(function(){
         var cityString = cityVar.toString();
         console.log(cityVar);
         marker.remove();
-
         geocode(cityString, mapBoxKey).then(function (data) {
             console.log(data);
             var latLng = {
                 lat: data[1],
                 lng: data[0]
-            }
-            let marker = new mapboxgl.Marker({
+            };
+            let searchMarker = new mapboxgl.Marker({
                 color: "#fd8ffa",
                 draggable: true
             }).setLngLat(latLng).addTo(map);
@@ -46,6 +50,12 @@ $(document).ready(function(){
             map.flyTo({ center: latLng, zoom: 11 });
             console.log(cityArray);
             console.log(forecast(cityArray));
+
+            function gettingSearchCords() {
+                let searchCords = searchMarker.getLngLat();
+                forecast([searchCords.lat, searchCords.lng])
+            };
+            searchMarker.on("dragend", () => gettingSearchCords());
         });
     });
 
@@ -58,6 +68,11 @@ $(document).ready(function(){
             $('.map').addClass('map-hidden');
         }
     })
+//day option listener
+
+    $("#day-int-select").change(function(){
+        $(this).click(gettingCords());
+    });
 
 // weather
 
