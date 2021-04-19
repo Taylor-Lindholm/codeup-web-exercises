@@ -1,4 +1,29 @@
 $(document).ready(function(){
+    function error(err){
+        console.log(err.code, err.message);
+    }
+    let options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    }
+    navigator.geolocation.getCurrentPosition(function (pos){
+        let userCords = pos.coords;
+        let latLng = [userCords.longitude, userCords.latitude,];
+        let marker = new mapboxgl.Marker({
+            color: "#fd8ffa",
+            draggable: true
+        }).setLngLat(latLng).addTo(map);
+        map.flyTo({ center: latLng, zoom: 11 });
+        function gettingCords() {
+            var currentCords = marker.getLngLat();
+            console.log(currentCords);
+            forecast([currentCords.lat, currentCords.lng]);
+        }
+        marker.on("dragend", () => gettingCords());
+        forecast([userCords.latitude, userCords.longitude]);
+    }, error, options);
+
 //map
     mapboxgl.accessToken = mapBoxKey;
     var map = new mapboxgl.Map({
@@ -8,26 +33,12 @@ $(document).ready(function(){
         zoom: 9 // starting zoom
     });
 
-    function gettingCords() {
-        var currentCords = marker.getLngLat();
-        console.log(currentCords);
-        forecast([currentCords.lat, currentCords.lng]);
-    }
-    // function gettingSearchCords() {
-    //     let searchCords = searchMarker.getLngLat();
-    //     forecast([searchCords.lat, searchCords.lng])
-    // }
-
     let marker = new mapboxgl.Marker({
-        color: "#fd8ffa",
+        color: "none",
         draggable: true,
         zoom: 10
     }).setLngLat([-98.2625, 29.8752])
         .addTo(map);
-
-    marker.on("dragend", () => gettingCords());
-    // searchMarker.on("dragend", () => gettingSearchCords())
-    forecast([29.8752, -98.2625]);
 
 //search listener
     $("button").click(function () {
